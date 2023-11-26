@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 @Service
 public class BookService {
-    Logger log;
+
 
     @Autowired
     private final BookRepository bookRepository;
@@ -29,20 +29,18 @@ public class BookService {
     }
     public List<Book> search(Object name,Object writer,Object publisher){
         List<Book> list=searchAll();
-        log.info("name : "+name);
-        log.info(("writer : " +writer));
-        log.info("publisher : "+publisher);
+
         if(name!=null){
             list=findByBookName(list,name.toString());
-            log.info(String.valueOf(list.size()));
+
         }
         if(writer!=null){
             list=findByWriter(list,writer.toString());
-            log.info(String.valueOf(list.size()));
+
         }
         if(publisher!=null){
             list=findByPublisher(list,publisher.toString());
-            log.info(String.valueOf(list.size()));
+
         }
 
         return list;

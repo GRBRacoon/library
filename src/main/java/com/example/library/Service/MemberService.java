@@ -28,23 +28,20 @@ public class MemberService {
         repository.save(member);
     }
 
-    public Object findById(String id){
-        return repository.findById(id);
+    public Member findById(String id){
+        return repository.findById(id).get();
     }
     public String memberLogin(String id, String password){
         if(findById(id)==null){
             return "no such member";
         }
         else{
-            Member member= (Member) findById(id);
+            Member member=  findById(id);
             if(member.getPassword().equals(password)){
                 return  "log in success";
             }
             else return "wrong password";
         }
     }
-
-
-
 
 }
