@@ -4,7 +4,6 @@ import com.example.library.Repository.BookRepository;
 import com.example.library.domain.Book;
 import com.example.library.domain.Member;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +14,7 @@ import java.util.List;
 @Transactional
 @Service
 public class BookService {
-    private final Logger log = LoggerFactory.getLogger(BookService.class.getClass());
+    Logger log;
 
     @Autowired
     private final BookRepository bookRepository;

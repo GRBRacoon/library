@@ -27,13 +27,8 @@ public class MemberController {
         return service.memberLogin(id, password);
     }
 
+
     @GetMapping("/memberJoin")
-    public String memberJoin() {
-
-        return "/memberJoin";
-    }
-
-    @PostMapping("/memberJoin")
     public String memberSave(@RequestParam("id") String id, @RequestParam("password") String password,
                              @RequestParam("name") String name) {
         service.memberSave(id, password, name);

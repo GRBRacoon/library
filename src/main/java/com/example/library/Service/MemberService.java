@@ -1,15 +1,12 @@
 package com.example.library.Service;
 
-import com.example.library.Repository.BookRepository;
+
 import com.example.library.Repository.MemberRepository;
-import com.example.library.domain.Book;
+
 import com.example.library.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
@@ -17,12 +14,10 @@ public class MemberService {
 
     private final MemberRepository repository;
 
-    private final BookRepository bookRepository;
 
 
-    public MemberService(@Autowired MemberRepository repository,@Autowired BookRepository bookRepository) {
+    public MemberService(@Autowired MemberRepository repository) {
         this.repository = repository;
-        this.bookRepository = bookRepository;
     }
 
     public void memberSave(String id , String password, String name){

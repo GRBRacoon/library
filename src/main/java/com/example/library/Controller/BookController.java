@@ -1,10 +1,10 @@
 package com.example.library.Controller;
 
 import com.example.library.Service.BookService;
+import com.example.library.Service.MemberService;
 import com.example.library.domain.Book;
 import com.example.library.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +15,13 @@ import java.util.List;
 public class BookController {
     @Autowired
     private final BookService service;
+    @Autowired
+    private final MemberService memberService;
 
 
-    public BookController(BookService service) {
+    public BookController(BookService service, MemberService memberService) {
         this.service = service;
+        this.memberService = memberService;
     }
 
     @GetMapping("/search")
@@ -29,17 +32,18 @@ public class BookController {
     }
 
     @GetMapping("/bookBorrow")
-    public String bookBorrow(@RequestParam("num")int num,@RequestParam("member") Member member){
-       return service.bookBorrow(num, member);
+    public String bookBorrow(@RequestParam("num")int num,@RequestParam("member") String member){
+
+       return service.bookBorrow(num, (Member) memberService.findById(member));
     }
 
     @GetMapping("/bookReturn")
     public String bookReturn(@RequestParam("num")int num){
         //멤버의 책 배열에서 찾고 있을 경우, 없을 경우
-        return "string";
-        //return  service.bookReturn(num);
+        return  service.bookReturn(num);
     }
 
+    @GetMapping("/memberBookBorrowList")
     public List<Book> memberBookBorrowList(@RequestParam("id")String id){
         List<Book> bookList= service.findByMemberId(id);
         return bookList;
