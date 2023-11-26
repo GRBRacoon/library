@@ -34,7 +34,7 @@ public class BookController {
     @GetMapping("/bookBorrow")
     public String bookBorrow(@RequestParam("num")int num,@RequestParam("member") String member){
 
-       return service.bookBorrow(num, (Member) memberService.findById(member));
+       return service.bookBorrow(num, memberService.findById(member));
     }
 
     @GetMapping("/bookReturn")
