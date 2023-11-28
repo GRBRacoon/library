@@ -45,20 +45,11 @@ public class BookController {
 
     @GetMapping("/memberBookBorrowList")
     public List<Book> memberBookBorrowList(@RequestParam("id")String id){
-        Book nullBook=new Book();
 
         List<Book> bookList= new ArrayList<>();
 
         if(memberService.findById(id)==null){
-            nullBook.setName("no such member");
-            bookList.add(nullBook);
             return bookList;
-        }
-        if(service.findByMemberId(id)==null){
-            nullBook.setName("no book list");
-            bookList.add(nullBook);
-            return bookList;
-
         }
         bookList= service.findByMemberId(id);
 
