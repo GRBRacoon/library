@@ -83,7 +83,7 @@ public class BookService {
         Book book= findById(num);
         if(findById(num)!=null){
             if(book.getBorrowNum()>0){
-                book.setBookNum(book.getNum()-1);
+                book.setBorrowNum(book.getBorrowNum()-1);
                 book.setMember(null);
                 return "return success";
             }

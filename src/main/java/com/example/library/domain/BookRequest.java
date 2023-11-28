@@ -1,8 +1,6 @@
 package com.example.library.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +9,8 @@ import lombok.Setter;
 @Entity
 public class BookRequest {
     @Id
-    int num;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int num=0;
     @Column(nullable = false)
     int date;
     @Column(nullable = false)

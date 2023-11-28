@@ -28,8 +28,10 @@ public class MemberService {
         repository.save(member);
     }
 
-    public Member findById(String id){
+    public Member findById(String id) {
+        if(repository.findById(id).isPresent())
         return repository.findById(id).get();
+        else return null;
     }
     public String memberLogin(String id, String password){
         if(findById(id)==null){

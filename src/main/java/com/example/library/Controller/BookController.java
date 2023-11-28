@@ -3,12 +3,12 @@ package com.example.library.Controller;
 import com.example.library.Service.BookService;
 import com.example.library.Service.MemberService;
 import com.example.library.domain.Book;
-import com.example.library.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,7 +45,23 @@ public class BookController {
 
     @GetMapping("/memberBookBorrowList")
     public List<Book> memberBookBorrowList(@RequestParam("id")String id){
-        List<Book> bookList= service.findByMemberId(id);
+        Book nullBook=new Book();
+
+        List<Book> bookList= new ArrayList<>();
+
+        if(memberService.findById(id)==null){
+            nullBook.setName("no such member");
+            bookList.add(nullBook);
+            return bookList;
+        }
+        if(service.findByMemberId(id)==null){
+            nullBook.setName("no book list");
+            bookList.add(nullBook);
+            return bookList;
+
+        }
+        bookList= service.findByMemberId(id);
+
         return bookList;
     }
 
