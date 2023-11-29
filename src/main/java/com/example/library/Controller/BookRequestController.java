@@ -20,10 +20,10 @@ public class BookRequestController {
     }
 
     @GetMapping("/request")
-    public void addRequest(@RequestParam("date")int date, @RequestParam("name")String name,
+    public String addRequest(@RequestParam("date")int date, @RequestParam("name")String name,
                            @RequestParam("writer")String writer,@RequestParam("explain") String explain){
 
-        service.addBookRequest(name, date, writer, explain);
+        return service.addBookRequest(name, date, writer, explain);
     }
     @GetMapping("/requestList")
     public List<BookRequest> getRequestList(){

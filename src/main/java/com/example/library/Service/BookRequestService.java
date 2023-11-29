@@ -19,7 +19,7 @@ public class BookRequestService {
         this.bookRequestRepository=bookRequestRepository;
     }
 
-    public void addBookRequest(String name, int date,String writer,String explain){
+    public String addBookRequest(String name, int date,String writer,String explain){
         BookRequest request=new BookRequest();
         request.setDate(date);
         request.setName(name);
@@ -27,6 +27,7 @@ public class BookRequestService {
         request.setWriter(writer);
 
         bookRequestRepository.save(request);
+        return "success";
     }
     public List<BookRequest> getRequestList(){
         return bookRequestRepository.findAll();
