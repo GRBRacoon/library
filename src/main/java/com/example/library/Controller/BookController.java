@@ -55,5 +55,10 @@ public class BookController {
 
         return bookList;
     }
+    @GetMapping("/bestBook")
+    public List<Book> getBestBook(){
+
+        return service.getBestList();
+    }
 
 }

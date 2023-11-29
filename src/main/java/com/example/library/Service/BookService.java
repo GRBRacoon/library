@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -99,4 +101,14 @@ public class BookService {
     }
 
 
+    public List<Book> getBestList() {
+        List<Book> list=bookRepository.findAll();
+        List<Book> returnlist=new ArrayList<>();
+        list= list.stream().sorted(Comparator.comparing(Book::getBorrowCount).reversed()).toList();
+
+        for(int i=0;i<100;i++){
+           returnlist.add(list.get(i));
+        }
+        return returnlist;
+    }
 }
