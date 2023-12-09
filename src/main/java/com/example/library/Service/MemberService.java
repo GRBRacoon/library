@@ -20,12 +20,17 @@ public class MemberService {
         this.repository = repository;
     }
 
-    public void memberSave(String id , String password, String name){
-        Member member=new Member();
-        member.setId(id);
-        member.setName(name);
-        member.setPassword(password);
-        repository.save(member);
+    public String memberSave(String id , String password, String name){
+        if (findById(id)==null) {
+            Member member=new Member();
+            member.setId(id);
+            member.setName(name);
+            member.setPassword(password);
+            repository.save(member);
+            return "register success";
+        } else {
+            return "same id exists";
+        }
     }
 
     public Member findById(String id) {
